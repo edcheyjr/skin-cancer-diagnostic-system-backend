@@ -74,7 +74,7 @@ def get_a_test(test_id):
         patient_test_record = Diagnosis.query.filter_by(
             test_id=test_id).first()
         if patient_test_record:
-            return patient_test_record
+            return patient_test_record, 200
         return{
             'status': FAILURE,
             'message': 'tests not found'

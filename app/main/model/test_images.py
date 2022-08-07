@@ -34,7 +34,7 @@ class Image(db.Model):
             'image_url': self.image_url,
             'localization': self.localization,
             'classification': self.classification,
-            'confidence': self.confidences,
+            'confidence': self.confidence,
             'date_created': datetime.datetime.strftime(self.date_created, "%d/%m/%Y, %H:%M:%S"),
             'date_modified': datetime.datetime.strftime(self.date_modified, "%d/%m/%Y, %H:%M:%S")
         }

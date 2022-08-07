@@ -94,11 +94,14 @@ class Model:
         img_array = tf.expand_dims(img_array, 0)
 
         predictions = model.predict(img_array)  # make the prediction
-        # ========================-----------==================
-        print(f"=========predictions {predictions} ============")
-        #=========================-----------==================
         # use softmax to make the classfication
         score = tf.nn.softmax(predictions[0])
+
+        print("=======================")
+        print("score", score)
+        print("=======================")
+        print("arg", np.argmax(score))
+        print("=======================")
 
         # predict_imgs_dict = {}
         # predict_imgs_dict['image_pixel'] = np.asarray(Image.open(imgPath).resize((28,28)))

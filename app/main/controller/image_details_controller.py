@@ -107,23 +107,24 @@ class ImageList(Resource):
                         label, conf = new_model.predict_single_image(
                             model=model, file_name=filename, img_path=filepath)
                         res_data = {
-                            'image_url': filepath,
+                            'image_url': f'http://localhost:5000/get-image/{filename}',
                             'localization': data['localization'],
-                            'classfication': label_mapper(label),
+                            'classification': label_mapper(label),
                             'confidence': conf
                         }
-                        test_images_service.save_image_records(
+                        result = test_images_service.save_image_records(
                             data['test_id'], res_data)
-                        return {
-                            'status': SUCCESS,
-                            'test_id': data['test_id'],
-                            'file': filepath,
-                            'localization': data['localization'],
-                            'result': {
-                                'label': label,
-                                'conf': conf
-                            }
-                        }, 200
+                        return result
+                        # return {
+                        #     'status': SUCCESS,
+                        #     'test_id': data['test_id'],
+                        #     'file': filepath,
+                        #     'localization': data['localization'],
+                        #     'result': {
+                        #         'label': label,
+                        #         'conf': conf
+                        #     }
+                        # }, 200
                     else:
                         resp = jsonify(
                             {'status': FAILURE, 'message': 'Allowed file types are png, jpg, jpeg, gif'})

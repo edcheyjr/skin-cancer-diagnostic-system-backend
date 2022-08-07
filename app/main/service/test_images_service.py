@@ -10,9 +10,12 @@ from ..utils.save_to_db import save_changes
 
 # save test image records
 def save_image_records(test_id, data):
+
     try:
-        test_record = get_a_test(test_id)
-        if test_record:
+        test_record, status = get_a_test(test_id)
+        print("=================== status")
+        print("--------", status)
+        if status == 200:
             new_image_record = Image(
                 data['image_url'],
                 data['localization'],

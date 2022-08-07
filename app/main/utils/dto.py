@@ -99,8 +99,6 @@ class TestImageDto:
         'test_id': fields.String(required=True, description='test diagnosis associated with'),
     })
     image_record = api.model('test_images', {
-
-        'image_name': fields.String(required=True, description='Image unique id'),
         'image_url': fields.Url(required=True, description='Image url'),
         'localization': fields.String(required=True, description='part of the body taken'),
         'classification': fields.String(required=True, description='How the image was classified by the model'),

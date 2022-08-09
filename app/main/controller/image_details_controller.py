@@ -12,6 +12,7 @@ from app.main.config import FAILURE, SUCCESS, UPLOAD_FOLDER
 from app.main.utils.base64_decode import base64ToPngOrJpgConverter
 from app.main.utils.check_file import is_file_allowed
 from app.main.utils.label_mapper import label_mapper
+from app.main.utils.listToString import listToString
 
 from ..service import test_images_service
 from ..utils.dto import TestImageDto
@@ -46,7 +47,7 @@ class ImageList(Resource):
         """add a new image and make classifiction"""
         # Part 1: add arguments in the post request
         # self.parser.add_argument(
-        #     "file", type=FileStorage, location='files', required=True, action="append")
+        # "file", type=FileStorage, location='files', required=True, action="append")
         # self.parser.add_argument('localization')
         # self.parser.add_argument('test_id')
         # self.parser.add_argument(
@@ -104,13 +105,15 @@ class ImageList(Resource):
                         print('---------------')
                         print('loading model...', model)
                         print('---------------')
-                        label, conf = new_model.predict_single_image(
+                        label, conf, score = new_model.predict_single_image(
                             model=model, file_name=filename, img_path=filepath)
+
                         res_data = {
                             'image_url': f'http://localhost:5000/get-image/{filename}',
                             'localization': data['localization'],
                             'classification': label_mapper(label),
-                            'confidence': conf
+                            'confidence': conf,
+                            'score': listToString(score)
                         }
                         result = test_images_service.save_image_records(
                             data['test_id'], res_data)

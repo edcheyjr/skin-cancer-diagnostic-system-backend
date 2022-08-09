@@ -10,7 +10,9 @@ from ..utils.save_to_db import save_changes
 
 # save test image records
 def save_image_records(test_id, data):
-
+    print("===================")
+    print("score", data['score'])
+    print("===================")
     try:
         test_record, status = get_a_test(test_id)
         print("=================== status")
@@ -21,6 +23,7 @@ def save_image_records(test_id, data):
                 data['localization'],
                 data['classification'],
                 data['confidence'],
+                data['score'],
                 test_id,
                 datetime.datetime.now()
             )

@@ -98,10 +98,8 @@ class Model:
         score = tf.nn.softmax(predictions[0])
 
         print("=======================")
-        print("score", score)
-        print("=======================")
-        print("arg", np.argmax(score))
-        print("=======================")
+        print("score", score.numpy())
+        print("========================")
 
         # predict_imgs_dict = {}
         # predict_imgs_dict['image_pixel'] = np.asarray(Image.open(imgPath).resize((28,28)))
@@ -118,4 +116,4 @@ class Model:
         )
         label = lab_map[np.argmax(score)]
         conf = 100 * np.max(score)
-        return label, conf
+        return label, conf, score.numpy()

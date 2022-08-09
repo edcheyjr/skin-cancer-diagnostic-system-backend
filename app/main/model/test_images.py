@@ -15,16 +15,18 @@ class Image(db.Model):
     localization = db.Column(db.String(50), nullable=False)
     classification = db.Column(db.String(100), nullable=True)
     confidence = db.Column(db.Float, nullable=True)
+    scores = db.Column(db.String(100), nullable=True)
     date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
     date_modified = db.Column(db.DateTime)
 
-    def __init__(self, image_url, localization, classification, confidences, test_id, date_modified):
+    def __init__(self, image_url, localization, classification, confidences, scores, test_id, date_modified):
         self.image_id = str(uuid.uuid4())
+        self.test_id = test_id
         self.image_url = image_url
         self.localization = localization
         self.classification = classification
         self.confidence = confidences
-        self.test_id = test_id
+        self.scores = scores
         self.date_modified = date_modified
 
     def serialize(self):
@@ -35,6 +37,7 @@ class Image(db.Model):
             'localization': self.localization,
             'classification': self.classification,
             'confidence': self.confidence,
+            'scores': self.scores,
             'date_created': datetime.datetime.strftime(self.date_created, "%d/%m/%Y, %H:%M:%S"),
             'date_modified': datetime.datetime.strftime(self.date_modified, "%d/%m/%Y, %H:%M:%S")
         }
@@ -45,6 +48,7 @@ class Image(db.Model):
         self.localization: data['localization']
         self.classification = data['classification']
         self.confidence = data['confidence']
+        self.scores = data['scores']
         self.date_modified: data['date_modified']
 
     # store model class a string

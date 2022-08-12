@@ -4,7 +4,7 @@ from flask import Blueprint
 from .main.controller.user_controller import api as user_ns
 from .main.controller.auth_controller import api as auth_ns
 from .main.controller.patient_controller import api as patient_ns
-from .main.controller.patient_records_controller import api as patient_test_recors_ns
+from .main.controller.patient_records_controller import api as patient_test_records_ns
 from .main.controller.image_details_controller import api as image_detail_ns
 from .main.controller.image_controller import api as image_ns
 
@@ -21,6 +21,6 @@ api = Api(blueprint,
 api.add_namespace(user_ns, path='/user')
 api.add_namespace(auth_ns)
 api.add_namespace(patient_ns, path='/patient')
-api.add_namespace(patient_test_recors_ns, path='/patient/tests')
+api.add_namespace(patient_test_records_ns, path='/patient/tests')
 api.add_namespace(image_detail_ns, path='/images')
 api.add_namespace(image_ns, path='/get-image')

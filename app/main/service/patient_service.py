@@ -81,7 +81,7 @@ def get_all_patients():
     except Exception as e:
         return{
             "status": FAILURE,
-            "message": f"failed to add a patient {e}"
+            "message": f"failed to get a patient {e}"
         }, 500
 # create a method to get a patient by id
 

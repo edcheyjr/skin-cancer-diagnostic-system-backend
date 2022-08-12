@@ -8,3 +8,6 @@ ISIC2018_Task3_Validation_GroundTruth
 ISIC2018_Task3_Test_Input
 Skin_Cancer_Weights.hdf5
 TODO
+flask_session
+*.txt
+migrations

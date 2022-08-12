@@ -69,10 +69,10 @@ def get_all_test(patient_id):
 # get one test
 
 
-def get_a_test(test_id):
+def get_a_test(test_id, status):
     try:
         patient_test_record = Diagnosis.query.filter_by(
-            test_id=test_id).first()
+            test_id=test_id, status=status).first()
         if patient_test_record:
             return patient_test_record, 200
         return{
@@ -93,17 +93,17 @@ def update_a_test(test_id, data):
         patient_test_record = Diagnosis.query.filter_by(
             test_id=test_id).first()
         if patient_test_record:
-            if test_keys[0] in data.keys():
+            if test_keys[0] in data.keys() and data['test_name'] != "":
                 patient_test_record.test_name = data['test_name']
-            if test_keys[2] in data.keys():
+            if test_keys[2] in data.keys() and data['test_result'] != "":
                 patient_test_record.test_result = data['test_result']
-            if test_keys[1] in data.keys():
+            if test_keys[1] in data.keys() and data['test_description'] != "":
                 patient_test_record.test_description = data['test_description']
-            if test_keys[3] in data.keys():
+            if test_keys[3] in data.keys() and data['doc_diagnosis'] != "":
                 patient_test_record.doc_diagnosis = data['doc_diagnosis']
                 # change to inactive
                 patient_test_record.status = "inactive"
-            if test_keys[4] in data.keys():
+            if test_keys[4] in data.keys() and data['doc_recommendation'] != "":
                 patient_test_record.doc_recommendation = data['doc_recommendation']
             patient_test_record.date_modified = datetime.datetime.now()
             # commit the session

@@ -1,25 +1,39 @@
 import os
-
+import redis
+from flask_sqlalchemy import SQLAlchemy
+from datetime import timedelta
 # uncomment the line below for postgres database url from environment variable
 # postgres_local_base = os.environ['DATABASE_URL']
-
+db = SQLAlchemy()
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 
 class Config:
     SECRET_KEY = os.getenv('SECRET_KEY')
+
     DEBUG = False
     SUCCESS = "success"
     FAILURE = "fail"
-    # Flask-Session
-    SESSION_TYPE = os.getenv('SESSION_TYPE')
     UPLOAD_IMG_EXTENSION = ['jpg', 'jpeg', 'png', 'gif']
     MAX_CONTENT_LENGTH = os.getenv(
         'MAX_CONTENT_LENGTH') or 50 * 1024 * 1024  # max file size
     UPLOAD_FOLDER = os.path.join(basedir, 'storage')  # uploads folder
-    # if SESSION_TYPE == 'redis')
-    # SESSION_REDIS = redis.from_url(os.getenv('SESSION_REDIS'))
-    # redis.Redis()
+    # Flask-Session
+    SESSION_TYPE = os.getenv('SESSION_TYPE')
+
+    if SESSION_TYPE == 'filesystem':
+        SESSION_PERMANENT = True
+        PERMANENT_SESSION_LIFETIME = timedelta(
+            minutes=int(os.getenv('SESSION_LIFETIME_HOURS')) or 5)
+        SESSION_FILE_THRESHOLD = int(
+            os.getenv('SESSION_FILE_THRESHOLD')) or 500
+    if SESSION_TYPE == 'redis':
+        SESSION_REDIS = redis.from_url(os.getenv('SESSION_REDIS'))
+        redis.Redis()
+    if SESSION_TYPE == 'sqlalchemy':
+        SESSION_SQLALCHEMY = db
+        SESSION_SQLALCHEMY_TABLE = os.getenv(
+            ' SESSION_SQLALCHEMY_TABLE') or 'sessions'
 
 
 class DevelopmentConfig(Config):

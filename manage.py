@@ -1,3 +1,4 @@
+
 import os
 import unittest
 from flask.cli import FlaskGroup
@@ -9,7 +10,6 @@ app = create_app(os.getenv('FLASK_ENV') or 'development')
 app.register_blueprint(blueprint)
 
 app.app_context().push()
-
 # register the blueprint
 cli = FlaskGroup(app)
 

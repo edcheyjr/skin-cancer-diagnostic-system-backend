@@ -94,9 +94,9 @@ class TestImageDto:
     api = Namespace(
         'test_images', description='test images used in patient test & diagnosis')
     add_image_record = api.model('test_images', {
-        'blobs': fields.List(fields.Raw(required=True, description='base64 images')),
-        'localization': fields.String(required=True, description='part of the body taken'),
         'test_id': fields.String(required=True, description='test diagnosis associated with'),
+        'localization': fields.String(required=True, description='part of the body taken'),
+        'imagesBase64': fields.List(fields.Raw(required=True, description='base64 images')),
     })
     image_record = api.model('test_images', {
         'id': fields.String(required=True),

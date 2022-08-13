@@ -45,9 +45,9 @@ def save_image_records(test_id, data):
 # get all images detail related to a test and diagnosis records of a patient
 
 
-def get_all_images_details(test_id):
+def get_all_images_details():
     try:
-        return Image.query.filter_by(test_id=test_id).all()
+        return Image.query.all()
     except Exception as e:
         return {
             'status': FAILURE,

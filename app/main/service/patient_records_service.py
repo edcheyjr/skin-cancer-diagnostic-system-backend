@@ -1,6 +1,6 @@
 import datetime
 
-from sqlalchemy import null
+
 from .. import db
 from ..model.patient_records import Diagnosis
 from ..service.patient_service import get_a_patient
@@ -15,6 +15,9 @@ test_keys = ['test_name', 'test_description',
 
 
 def save_intial_test(patient_id, data):
+    print("================")
+    print("record", data)
+    print("================")
     try:
         patient = get_a_patient(patient_id)
 
@@ -22,12 +25,13 @@ def save_intial_test(patient_id, data):
             patient_test = Diagnosis.query.filter_by(
                 patient_id=patient_id, status="active").first()
             if not patient_test:
+
                 new_diagnosis = Diagnosis(
                     test_name=data['test_name'],
                     test_description=data['test_description'],
-                    test_result=data['test_result'],
-                    doc_diagnosis=data['doc_diagnosis'],
-                    doc_recommendation=data['doc_recommendation'],
+                    test_result=None,
+                    doc_diagnosis=None,
+                    doc_recommendation=None,
                     patient_id=patient_id,
                     date_modified=datetime.datetime.now(),
                     status='active'
@@ -46,7 +50,7 @@ def save_intial_test(patient_id, data):
     except Exception as e:
         return {
             'status': FAILURE,
-            'message': f'server error{e}'
+            'message': f'server error {e}'
         }, 500
 
 # get the tests and diagnosis data

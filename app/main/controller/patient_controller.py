@@ -46,11 +46,11 @@ class PatientList(Resource):
     @api.marshal_list_with(_patient)
     def get(self, public_id):
         """get a Patient with the id"""
+        # store patient id
         session_data = get_session_data(filename)
         if len(session_data) == 0:
             write_on_session_file(filename, public_id)
         patient = patient_service.get_a_patient(public_id)
-        # store patient id
         if patient.public_id == null:
             make_response({"error", "unauthorized request"}, 401)
         else:

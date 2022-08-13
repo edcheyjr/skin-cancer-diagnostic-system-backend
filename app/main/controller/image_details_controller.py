@@ -37,8 +37,8 @@ class ImageList(Resource):
     @api.marshal_list_with(_image_details, envelope='data')
     def get(self):
         """get all image details related to a test and diagnosis record"""
-        data = request.json
-        return test_images_service.get_all_images_details(data['test_id'])
+
+        return test_images_service.get_all_images_details()
 
     @token_required
     @api.doc("add a new image")

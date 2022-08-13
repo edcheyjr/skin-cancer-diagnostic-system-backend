@@ -99,14 +99,16 @@ class TestImageDto:
         'test_id': fields.String(required=True, description='test diagnosis associated with'),
     })
     image_record = api.model('test_images', {
+        'id': fields.String(required=True),
+        'image_id': fields.String(required=True, description="image unique id"),
+        'test_id': fields.String(required=True, description='test_id diagnosis associated with'),
         'image_url': fields.String(required=True, description='Image url'),
         'localization': fields.String(required=True, description='part of the body taken'),
         'classification': fields.String(required=True, description='How the image was classified by the model'),
         'confidence': fields.String(required=True, description='model confidence with it\'s prediction'),
         'scores': fields.String(required=True, description='scsore for each class'),
-        'test_id': fields.String(required=True, description='test diagnosis associated with'),
-        'date_created': fields.DateTime(description='date created'),
-        'date_modified': fields.DateTime(description='date modified')
+        'date_modified': fields.DateTime(description='date modified'),
+        'date_created': fields.DateTime(description='date created')
     })
 
 

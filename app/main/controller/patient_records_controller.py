@@ -12,6 +12,7 @@ from ..config import FAILURE, SUCCESS
 # filename
 filename = "patient_data.txt"
 
+
 # create a namespace
 api = DiagnosisDto.api
 _patient_record = DiagnosisDto.diagnosis
@@ -28,7 +29,6 @@ class PatientRecord(Resource):
         """all test and diagnosis records of the patient"""
         session_data_list = get_session_data(filename)
         patient_id = session_data_list[0]
-
         print("========================")
         print("session data", patient_id)
         print("========================")

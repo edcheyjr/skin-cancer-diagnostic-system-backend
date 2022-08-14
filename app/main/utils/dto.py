@@ -96,7 +96,7 @@ class TestImageDto:
     add_image_record = api.model('test_images', {
         'test_id': fields.String(required=True, description='test diagnosis associated with'),
         'localization': fields.String(required=True, description='part of the body taken'),
-        'imagesBase64': fields.List(fields.Raw(required=True, description='base64 images')),
+        'imageBase64': fields.List(fields.Raw(required=True, description='base64 images')),
     })
     image_record = api.model('test_images', {
         'id': fields.String(required=True),

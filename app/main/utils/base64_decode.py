@@ -8,7 +8,7 @@ def base64ToPngOrJpgConverter(img_data, img_id, test_id):
     arr = img_data.split(';')
     data = arr[0]
     print("=======================")
-    print("data", data)
+    print("image_data", data)
     print("=======================")
 
     base64_bytes = arr[1]

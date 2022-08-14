@@ -14,7 +14,7 @@ def save_image_records(test_id, data):
     print("score", data['score'])
     print("===================")
     try:
-        test_record, status = get_a_test(test_id)
+        test_record, status = get_a_test(test_id, status="active")
         print("=================== status")
         print("--------", status)
         if status == 200:

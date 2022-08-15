@@ -11,3 +11,4 @@ TODO
 flask_session
 *.txt
 migrations
+model.h5

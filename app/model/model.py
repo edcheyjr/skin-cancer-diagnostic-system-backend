@@ -33,14 +33,13 @@ from IPython.core.interactiveshell import InteractiveShell
 InteractiveShell.ast_node_interactivity = "all"
 
 basedir = os.path.abspath(os.path.dirname(__file__))
-file = "Skin_Cancer.h5"
-new_path = os.path.join(basedir, file)
+current_file = "Skin_Cancer.h5"
 
 
 class Model:
 
-    def __init__(self, path) -> None:
-        self.path = path or new_path
+    def __init__(self, file) -> None:
+        self.path = os.path.join(basedir, file or current_file)
 
     def load_pre_trained_model(self):
         # check if the path exists before trying to load the model

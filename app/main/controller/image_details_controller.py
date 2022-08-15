@@ -96,13 +96,13 @@ class ImageList(Resource):
             if bool(filepath):
                 if is_file_allowed(filename):
                     # push the file to the model for prediction
-                    new_model = Model(None)
+                    new_model = Model('model.h5')
                     model = new_model.load_pre_trained_model()
                     print('---------------')
                     print('loading model...', model)
                     print('---------------')
                     label, conf, score = new_model.predict_single_image(
-                        model=model, file_name=filename, img_path=filepath)
+                        model=model, file_name=filename, img_path=filepath, img_width=100, img_height=75)
 
                     res_data = {
                         'image_url': f'http://localhost:5000/get-image/{filename}',

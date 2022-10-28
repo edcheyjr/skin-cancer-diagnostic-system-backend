@@ -8,17 +8,17 @@ from manage import app
 from app.main.config import basedir
 
 '''
-   This classes tests the configuration of the application.
-   The test cases are based on the following:
-   1. The test_config.py file
-   2. The config.py file
-   3. The app.py file
-   4. The main.py file
-   5. The model.py file
-   6. The user.py file
-   7. The database.py file
-   8. The database.sqlite file
-   9. The database.sqlalchemy file
+    This classes tests the configuration of the application.
+    The test cases are based on the following:
+    1. The test_config.py file
+    2. The config.py file
+    3. The app.py file
+    4. The main.py file
+    5. The model.py file
+    6. The user.py file
+    7. The database.py file
+    8. The database.sqlite file
+    9. The database.sqlalchemy file
 
 '''
 

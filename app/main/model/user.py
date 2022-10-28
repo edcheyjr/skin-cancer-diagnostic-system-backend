@@ -5,7 +5,6 @@ import jwt
 from ..config import key
 from .blacklist import Blacklisted
 from flask_bcrypt import generate_password_hash, check_password_hash
-from flask import jsonify
 
 
 # create a class for the user
@@ -32,8 +31,7 @@ class User(db.Model):
         self.password = password
         self.date_modified = date_modified
 
-    # create a method to serialize the user model
-
+    # create a method to serialize the user mod
     def serialize(self):
         return {
             'id': self.id,
@@ -115,4 +113,5 @@ class User(db.Model):
             return 'Invalid token. Please log in again.'
 
     def __repr__(self):
-        return '<User %r>' % self.email  # return the user's email
+        # return the user's email string representation of the class
+        return '<User %r>' % self.email

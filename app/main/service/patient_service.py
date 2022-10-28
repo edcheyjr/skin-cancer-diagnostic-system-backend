@@ -20,7 +20,7 @@ def save_new_patient(data):
         age = datetime.datetime.now().year - birthdate_obj.year
         patient = Patient.query.filter_by(email=data["email"]).first()
         print("==================================")
-        print("---------", patient, "------------")
+        print("-------- checking of the patient", patient, "------------")
         print("==================================")
         if patient:
             return {

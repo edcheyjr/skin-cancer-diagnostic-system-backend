@@ -60,7 +60,7 @@ def get_all_test(patient_id):
     try:
         diagnosis = Diagnosis.query.filter_by(patient_id=patient_id).all()
         # print("-------------------------------------")
-        # print("patient", diagnosis.patient)
+        # print("diagnosis", diagnosis)
         # print("-------------------------------------")
         return diagnosis
 

@@ -19,6 +19,5 @@ MarkupSafe>=1.0
 pycparser>=2.18
 PyJWT>=1.6.0
 python-dateutil>=2.7.0
-python-editor>=1.0.3
 SQLAlchemy>=1.2.5
 Werkzeug==0.16.1

@@ -1,7 +1,6 @@
 from flask import request, session
 from flask_restx import Resource
 from sqlalchemy import null
-import pickle
 
 from app.main.utils.decorator import token_required
 
@@ -34,12 +33,11 @@ class PatientRecord(Resource):
         print("========================")
         records = patient_records_service.get_all_test(
             patient_id=patient_id)
-        if bool(records):
-            return records
-        return {
-            "status": FAILURE,
-            "message": "no test records of the patient"
-        }, 404
+        return records
+        # return {
+        #     "status": FAILURE,
+        #     "message": "no test records of the patient"
+        # }, 404
 
     @token_required
     @api.doc("post a new test record for the patient")
